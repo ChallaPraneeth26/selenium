@@ -1,0 +1,26 @@
+https://github.com/ChallaPraneeth26/selenium
+pipeline { 
+    agent any 
+    tools { 
+        maven 'Maven' 
+    } 
+    stages { 
+        stage('Checkout') { 
+            steps { 
+                // Replace with your GitHub URL
+                git branch: 'main', url: 'https://github.com/ChallaPraneeth26/selenium' 
+            } 
+        } 
+        stage('Build') { 
+            steps { 
+                sh 'mvn clean compile' 
+            } 
+        } 
+        stage('Selenium Test') { 
+            steps { 
+                // Runs the main method in App.java
+                sh 'mvn exec:java -Dexec.mainClass="com.example.App"' 
+            } 
+        } 
+    } 
+}
